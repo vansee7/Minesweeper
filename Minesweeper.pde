@@ -24,10 +24,10 @@ void setup ()
 
 public void setBombs()
 {
-    for(int n=1; n<20; n++){
+    for(int n=0; n<15; n++){
         int row = (int)(Math.random()*20);
         int col = (int)(Math.random()*20);
-            if(!bombs.contains(buttons[row][col]));
+            if(!bombs.contains(buttons[row][col]))
                 bombs.add(buttons[row][col]);
     }    
 }
@@ -38,39 +38,50 @@ public void draw ()
     if(isWon())
         displayWinningMessage();
 }
+
 public boolean isWon()
 {
-    for(int i=0; i<bombs.size();i++){
-        if(bombs.get(i).marked==true)
-        return true;
-    }    
+    int count=0;
+    for(int i=0; i<bombs.size(); i++){
+      if(bombs.get(i).marked==true)
+        count++;
+      if(count==15)
+        return true;  
+    }
     return false;
 }
+
 public void displayLosingMessage()
 {
     for(int i=0; i<bombs.size();i++){
         bombs.get(i).clicked=true;
-    } 
-    buttons[10][6].setLabel("G");
-    buttons[10][7].setLabel("A");
-    buttons[10][8].setLabel("M");
-    buttons[10][9].setLabel("E");
-    buttons[10][10].setLabel(" ");
-    buttons[10][11].setLabel("O");
-    buttons[10][12].setLabel("V");
-    buttons[10][13].setLabel("E");
-    buttons[10][14].setLabel("R");
+    }     
+    for(int r=0; r<20; r++){
+      buttons[r][5].setLabel(" ");
+      buttons[r][6].setLabel("G");
+      buttons[r][7].setLabel("A");
+      buttons[r][8].setLabel("M");
+      buttons[r][9].setLabel("E");
+      buttons[r][10].setLabel(" ");
+      buttons[r][11].setLabel("O");
+      buttons[r][12].setLabel("V");
+      buttons[r][13].setLabel("E");
+      buttons[r][14].setLabel("R");
+      buttons[r][15].setLabel(" ");
+    }
 }
 
 public void displayWinningMessage()
-{
-    buttons[10][7].setLabel("Y");
-    buttons[10][8].setLabel("O");
-    buttons[10][9].setLabel("U");
-    buttons[10][10].setLabel(" ");
-    buttons[10][11].setLabel("W");
-    buttons[10][12].setLabel("I");
-    buttons[10][13].setLabel("N");
+{ 
+      for(int r=0; r < 20; r++){
+      buttons[r][7].setLabel("Y");
+      buttons[r][8].setLabel("O");
+      buttons[r][9].setLabel("U");
+      buttons[r][10].setLabel(" ");
+      buttons[r][11].setLabel("W");
+      buttons[r][12].setLabel("I");
+      buttons[r][13].setLabel("N");        
+      }
 }
 
 public class MSButton
